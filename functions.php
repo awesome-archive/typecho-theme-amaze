@@ -2,11 +2,17 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {
-    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('站点LOGO地址'), _t('在这里填入一个图片URL地址, 以在网站标题前加上一个LOGO'));
-    $form->addInput($logoUrl);
+    $faviconUrl = new Typecho_Widget_Helper_Form_Element_Text('faviconUrl', NULL, NULL, _t('站点favicon.ico地址'), _t('站点favicon.ico地址'));
+    $form->addInput($faviconUrl);
 
-    $backgroundImage = new Typecho_Widget_Helper_Form_Element_Text('backgroundImage', NULL, NULL, _t('背景图片地址'), _t('请输入 背景图片 地址'));
+    $backgroundImage = new Typecho_Widget_Helper_Form_Element_Text('backgroundImage', NULL, NULL, _t('背景图片地址'), _t('请输入背景图片地址'));
     $form->addInput($backgroundImage);
+
+    $backgroundText = new Typecho_Widget_Helper_Form_Element_Text('backgroundText', NULL, NULL, _t('背景图片大标题'), _t('请输入背景图片大标题内容'));
+    $form->addInput($backgroundText);
+
+    $searchPage = new Typecho_Widget_Helper_Form_Element_Text('searchPage', NULL, NULL, _t('搜索页地址'), _t('输入你的 Seach 的独立页面地址,记得带上 http:// 或 https://'));
+    $form->addInput($searchPage);
 
     $avatarUrl = new Typecho_Widget_Helper_Form_Element_Text('avatarUrl', NULL, NULL, _t('头像地址'), _t('输入头像地址'));
     $form->addInput($avatarUrl);
@@ -27,3 +33,20 @@ function themeConfig($form) {
     $form->addInput($socialWeibo);
 }
 
+function getCommentAt($coid){
+    $db   = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('parent')
+        ->from('table.comments')
+        ->where('coid = ? AND status = ?', $coid, 'approved'));
+    $parent = $prow['parent'];
+    if ($parent != "0") {
+        $arow = $db->fetchRow($db->select('author')
+            ->from('table.comments')
+            ->where('coid = ? AND status = ?', $parent, 'approved'));
+        $author = $arow['author'];
+        $href   = '<a href="#comment-'.$parent.'">@'.$author.'</a>';
+        echo $href;
+    } else {
+        echo '';
+    }
+}

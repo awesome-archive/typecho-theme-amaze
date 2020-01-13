@@ -4,6 +4,8 @@
 ## Amaze Theme
 > 这是一个简洁风格的主题，参考了AmazeUI和[Typecho-Theme-Meizi](https://github.com/tlerbao/Typecho-Theme-Meizi)还有Jekyll的主题Project-pages和[小专栏](https://xiaozhuanlan.com/)，可以说是AmazeUI、Project-pages、小专栏混搭风格。
 
+主题讨论地址：https://spiritree.me/archives/typecho-theme-amaze.html
+
 ## 概述
 
 - 作者：spiritree
@@ -34,12 +36,20 @@ Github本页面下载，点击"Download ZIP"下载，将主题文件夹改名为
 ## 主题自定义
 登陆到管理后台，控制台=>外观=>设置外观
 
+## 设置独立页面
+开启归档和搜索页面
+
+控制台=>管理=>独立页面=>新增=>选择模板=>自定义模板
+
+**搜索页面要设置隐藏并且在设置外观中输入搜索页面的网址**
 ## TODO
 - [x] 美化navbar在移动端的表现效果
-- [ ] 修改文章详情界面样式
-- [ ] 美化评论组件
+- [x] 修改文章详情界面样式
+- [x] 美化评论组件
 - [x] 首页侧边栏重构
 - [x] 首页文章详情重构
+- [x] 增加搜索功能
+- [x] 文章自动生成目录
 
 ## LICENSE
 
